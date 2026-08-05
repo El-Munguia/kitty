@@ -14,6 +14,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
     rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unkempt&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -81,8 +82,8 @@
 
     .card {
 
-    width:min(92vw,700px);
-    padding:clamp(22px,4vw,48px);
+      width: min(92vw, 700px);
+      padding: clamp(22px, 4vw, 48px);
 
 
       text-align: center;
@@ -126,9 +127,9 @@
 
     .title {
       font-family: 'Great Vibes', cursive;
-    font-size:clamp(2.2rem,8vw,4rem);
-    line-height:1.15;
-          margin: 6px 0 10px;
+      font-size: clamp(2.2rem, 8vw, 4rem);
+      line-height: 1.15;
+      margin: 6px 0 10px;
       position: relative;
       display: inline-block;
       padding: 8px 12px;
@@ -149,7 +150,7 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-          text-wrap:balance;
+      text-wrap: balance;
 
     }
 
@@ -188,9 +189,10 @@
 
     .subtitle {
 
-    font-size:clamp(1.2rem,5vw,2rem);
+      font-size: clamp(1.2rem, 5vw, 2rem);
 
       margin: 6px 0 20px;
+      font-family: 'Unkempt', cursive;
 
       color: var(--accent);
 
@@ -203,12 +205,14 @@
     /* small description */
 
     .desc {
+      font-family: 'Unkempt', cursive;
+      font-weight: 600;
 
       color: #d14e83;
 
       margin-bottom: 18px;
-          font-size:clamp(.95rem,3vw,1.1rem);
-    line-height:1.6;
+      font-size: clamp(1.05rem, 3.2vw, 1.3rem);
+      line-height: 1.6;
 
     }
 
@@ -218,6 +222,7 @@
     .heart {
 
       position: absolute;
+      z-index: 1000;
 
       font-size: 20px;
 
@@ -305,8 +310,8 @@
 
     .floating-kitty {
       position: absolute;
-    width:clamp(45px,15vw,90px);
-    height:clamp(45px,15vw,90px);
+      width: clamp(45px, 15vw, 90px);
+      height: clamp(45px, 15vw, 90px);
       object-fit: contain;
       pointer-events: none;
       z-index: 0;
@@ -350,8 +355,8 @@
           alt="Hello Kitty">
 
         <h1 class="title">
-          <span style="padding: 15px 0 15px 15px;">Fanny eres </span>
-          <span style="padding: 15px 15px 15px 0;" id="titleMessage">especial</span>
+          <span style="padding: 0 0 0 15px;">Fanny eres </span>
+          <span style="padding: 0 15px 0 0;" id="titleMessage">especial</span>
         </h1>
         <p class="desc">No solo hoy, no solo ayer, no solo mañana, Si no cada dia que el corazon lata para
           recordarte.<br> <br> Att: Munguengue</p>
@@ -362,11 +367,16 @@
 
 
     </div>
-
+<audio id="bgMusic" loop>
+    <source src="garota.mp3" type="audio/mpeg">
+</audio>
     <script>
 
       const isMobile = window.innerWidth < 768;
-      const kittyCount = isMobile ? 4 : 8;
+      const kittyCount = isMobile ? 7 : 14;
+      const music = document.getElementById("bgMusic");
+
+let musicStarted = false;
 
 
       // --- Create hearts on click ---
@@ -436,6 +446,35 @@
         // on click anywhere in stage
 
         stage.addEventListener('click', function (e) {
+
+if (!musicStarted) {
+
+    musicStarted = true;
+
+    music.volume = 0;
+
+    const startMusic = () => {
+        music.currentTime = 30; // Comenzar en el segundo 32
+
+        music.play().catch(() => {});
+
+        const fade = setInterval(() => {
+
+            if (music.volume < 0.5) {
+                music.volume = Math.min(0.5, music.volume + 0.05);
+            } else {
+                clearInterval(fade);
+            }
+
+        }, 150);
+    };
+
+    if (music.readyState >= 1) {
+        startMusic();
+    } else {
+        music.addEventListener("loadedmetadata", startMusic, { once: true });
+    }
+}
 
           // create multiple hearts per click
 
@@ -554,7 +593,7 @@
           ];
 
         txt.style.left =
-    (Math.random()*80 + 10) + "%";
+          (Math.random() * 80 + 10) + "%";
 
         txt.style.animationDuration =
           (4 + Math.random() * 6) + "s";
@@ -579,11 +618,14 @@
 
       const kittyImages = [
         'https://i.gifer.com/origin/1c/1c29154636f73295ad5fe84068c7a180_w200.gif',
-        'https://i.pinimg.com/originals/15/50/de/1550dedd078d0ae32e357ae926c0afe7.gif',
-        'https://media.tenor.com/9aNFYFKJijEAAAAM/kitty-lol-kittylove.gif',
+        'https://i.pinimg.com/originals/91/a3/e1/91a3e1191b2506890b29f7e33f479709.gif',
+        'https://i.pinimg.com/originals/ec/10/23/ec1023dc9c47eae35642c8845f8c3080.gif',
         'https://media1.giphy.com/media/jpqwTJ25fA9HzdeS8Z/source.gif',
         'https://i.pinimg.com/originals/29/fc/51/29fc5101151a16e9bc60e0cd1b447158.gif',
-        'https://media.tenor.com/Lm5Zj59Qp0kAAAAM/sanrio-hello-kitty.gif'
+        'https://media.tenor.com/Lm5Zj59Qp0kAAAAM/sanrio-hello-kitty.gif',
+        'https://i.pinimg.com/originals/6a/8a/cf/6a8acfe5d27e516abbf57e74e9849d7d.gif',
+        'https://media1.tenor.com/m/oMM43p2kd3wAAAAC/game-video-games.gif'
+
       ];
 
       function createFloatingKitties() {
