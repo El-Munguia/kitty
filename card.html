@@ -367,16 +367,16 @@
 
 
     </div>
-<audio id="bgMusic" loop>
-    <source src="garota.mp3" type="audio/mpeg">
-</audio>
+    <audio id="bgMusic" loop>
+      <source src="garota.mp3" type="audio/mpeg">
+    </audio>
     <script>
 
       const isMobile = window.innerWidth < 768;
       const kittyCount = isMobile ? 7 : 14;
       const music = document.getElementById("bgMusic");
 
-let musicStarted = false;
+      let musicStarted = false;
 
 
       // --- Create hearts on click ---
@@ -447,34 +447,34 @@ let musicStarted = false;
 
         stage.addEventListener('click', function (e) {
 
-if (!musicStarted) {
+          if (!musicStarted) {
 
-    musicStarted = true;
+            musicStarted = true;
 
-    music.volume = 0;
+            music.volume = 0;
 
-    const startMusic = () => {
-        music.currentTime = 30; // Comenzar en el segundo 32
+            const startMusic = () => {
+              music.currentTime = 30; // Comenzar en el segundo 32
 
-        music.play().catch(() => {});
+              music.play().catch(() => { });
 
-        const fade = setInterval(() => {
+              const fade = setInterval(() => {
 
-            if (music.volume < 0.5) {
-                music.volume = Math.min(0.5, music.volume + 0.05);
+                if (music.volume < 0.5) {
+                  music.volume = Math.min(0.5, music.volume + 0.05);
+                } else {
+                  clearInterval(fade);
+                }
+
+              }, 150);
+            };
+
+            if (music.readyState >= 1) {
+              startMusic();
             } else {
-                clearInterval(fade);
+              music.addEventListener("loadedmetadata", startMusic, { once: true });
             }
-
-        }, 150);
-    };
-
-    if (music.readyState >= 1) {
-        startMusic();
-    } else {
-        music.addEventListener("loadedmetadata", startMusic, { once: true });
-    }
-}
+          }
 
           // create multiple hearts per click
 
@@ -527,18 +527,59 @@ if (!musicStarted) {
       const title = document.getElementById("titleMessage");
 
       const phrases = [
-        "I love you Fanny 💖",
-        "Hello Kitty te ama 🎀",
-        "Eres muy especial 🌸",
-        "Mi persona favorita 💕",
-        "Siempre pienso en ti ✨",
-        "Tu sonrisa es hermosa 🌷",
-        "Hello Kitty aprueba esto 🐱",
-        "Eres mi felicidad 💝",
-        "Contigo todo es mejor 🌈",
-        "Mi Sanrio favorito 🎠",
-        "Te quiero muchísimo 💗",
-        "Eres increíble 💎"
+        "...",
+        "todo",
+        "muchas cosas",
+        "especial 🌸",
+        "hermosa 🌷",
+        "maravillosa 💖",
+        "única 💕",
+        "increíble 🌸",
+        "mi felicidad 💗",
+        "mi lugar seguro 💝",
+        "mi persona favorita 💖",
+        "la casualidad más bonita 🌷",
+        "el mejor regalo 🌸",
+        "la sonrisa más linda 💕",
+        "la razón de muchas sonrisas 🌼",
+        "un sueño hecho realidad 🌹",
+        "un rayito de luz 💐",
+        "adorable 🌸",
+        "encantadora 💖",
+        "dulce 🌷",
+        "tierna 💕",
+        "brillante 🌼",
+        "valiente 🌹",
+        "auténtica 🌸",
+        "inolvidable 💝",
+        "extraordinaria 💖",
+        "preciosa 🌷",
+        "la definición de ternura 💕",
+        "la mejor parte del día 🌸",
+        "la calma entre el caos 🌷",
+        "un corazón hermoso 💗",
+        "una persona maravillosa 🌹",
+        "mi pensamiento favorito 💖",
+        "la inspiración de muchas sonrisas 🌸",
+        "la prueba de que existe la magia 💐",
+        "la mejor coincidencia 🌷",
+        "más fuerte de lo que imaginas 💕",
+        "más valiosa de lo que crees 🌸",
+        "un pedacito de cielo 💖",
+        "simplemente perfecta 🌹",
+        "tan linda como hello kitty 🌸",
+        "la flor más bonita 🌺",
+        "la estrella que más brilla 💗",
+        "la mejor compañía 🌷",
+        "el abrazo que quisiera todos los días 💕",
+        "la persona que alegra mi mundo 🌸",
+        "la razón por la que sonrío 💖",
+        "más especial de lo que imaginas 🌹",
+        "todo lo bonito que existe 🌼",
+        "la dueña de una sonrisa hermosa 🌷",
+        "el mejor capítulo de la historia 💝",
+        "la definición de belleza 🌸",
+        "simplemente tú, y eso ya es perfecto 💖"
       ];
 
       let phraseIndex = 0;
@@ -568,17 +609,17 @@ if (!musicStarted) {
 
       const floatingPhrases = [
         "💖",
-        "Hello Kitty",
         "Fanny",
         "Te quiero",
         "💕",
         "🎀",
         "🌸",
-        "Kawaii",
         "💝",
         "🐱",
         "✨",
-        "Sanrio"
+        "Hermosa",
+        "Feliz Cumpleaños",
+        "🌷",
       ];
 
       function createFallingText() {
