@@ -4,578 +4,620 @@
 
 <head>
 
-<meta charset="utf-8" />
+  <meta charset="utf-8" />
 
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<title>Hello Kitty — Surprise</title>
+  <title>Hello Kitty — Surprise</title>
 
-<!-- Fonts -->
+  <!-- Fonts -->
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
 
-<style>
+  <style>
+    :root {
 
-  :root{
+      --bg: #ffd9e0;
+      --accent: #d14e83;
+      --glow: 0 6px 18px rgba(235, 0, 98, 0.18);
 
-    --bg:#ffd9e0;
-    --accent:#d14e83;
-    --glow: 0 6px 18px rgba(235, 0, 98, 0.18);
-
-  }
-
-  /* Page reset */
-
-  *{box-sizing:border-box}
-
-  html,body{
-
-    height:100%;
-
-    margin:0;
-
-    font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-
-    -webkit-font-smoothing:antialiased;
-
-    -moz-osx-font-smoothing:grayscale;
-
-    background-image:url("fondo.png");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-  }
-
-  /* Main card / stage */
-
-  .stage{
-
-    width:100%;
-
-    min-height:100vh;
-
-    padding:48px 24px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    position:relative;
-
-    overflow:hidden;
-
-  }
-
-  .card{
-
-    max-width:700px;
-
-    width:100%;
-
-    text-align:center;
-
-    padding:48px;
-
-    border-radius:20px;
-
-    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.7));
-
-    box-shadow: var(--glow), 0 2px 8px rgba(0,0,0,0.06);
-
-    backdrop-filter: blur(6px);
-
-    position:relative;
-
-  }
-
-  /* Hello Kitty image */
-
-  .hero-img{
-
-    width:120px;
-
-    height:120px;
-
-    object-fit:contain;
-
-    border-radius:14px;
-
-    box-shadow: 0 10px 30px rgba(255,100,160,0.12);
-
-    margin: 0 auto 12px;
-
-    display:block;
-
-  }
-
-  /* Title with shiny effect */
-
-.title{
-    font-family:'Great Vibes', cursive;
-    font-size:56px;
-    margin:6px 0 10px;
-    position:relative;
-    display:inline-block;
-    padding:8px 12px;
-
-    text-shadow:
-        0 2px 0 rgba(255,255,255,0.6),
-        0 6px 20px rgba(255,100,160,0.18);
-
-    background-image: linear-gradient(
-        90deg,
-        #d14e83 0%,
-        #df8cad 30%,
-        #d14e83 60%,
-        #ca3772 100%
-    );
-
-    background-size: 800px 100%;
-    animation: shimmer 5s linear infinite;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-}
-
-.title span{
-    display:inline-block;
-
-
-    background-image: linear-gradient(
-        90deg,
-        #d14e83 0%,
-        #df8cad 30%,
-        #d14e83 60%,
-        #ca3772 100%
-    );
-
-    background-size:800px 100%;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-
-    animation:shimmer 5s linear infinite;
-}
-
-  @keyframes shimmer{
-
-    0%{ background-position: -400px 0; }
-
-    100%{ background-position: 400px 0; }
-
-  }
-
-  /* Subtitle with layered shadow to look embossed */
-
-  .subtitle{
-
-    font-size:32px;
-
-    margin:6px 0 20px;
-
-    color:var(--accent);
-
-    font-weight:600;
-
-    text-shadow: 0 2px 0 #fff, 0 6px 18px rgba(255,110,150,0.14);
-
-  }
-
-  /* small description */
-
-  .desc{
-
-    color:#d14e83;
-
-    margin-bottom:18px;
-
-  }
-
-
-  /* hearts generated on click */
-
-  .heart {
-
-    position:absolute;
-
-    font-size:20px;
-
-    pointer-events:none;
-
-    transform: translate(-50%, -50%) scale(1);
-
-    animation: floatUp 1600ms ease-out forwards;
-
-    will-change: transform, opacity;
-
-    text-shadow: 0 2px 6px rgba(0,0,0,0.15);
-
-  }
-
-  @keyframes floatUp {
-
-    0%{ transform: translate(-50%, -50%) translateY(0) scale(0.8) rotate(0deg); opacity:1; }
-
-    60%{ transform: translate(-50%, -50%) translateY(-80px) scale(1.15) rotate(-10deg); opacity:0.95; }
-
-    100%{ transform: translate(-50%, -50%) translateY(-220px) scale(0.9) rotate(10deg); opacity:0; }
-
-  }
-
-  /* small responsive tweaks */
-
-  @media (max-width:600px){
-
-    .card{ padding:28px; border-radius:14px; }
-
-    .title{ font-size:40px; }
-
-    .subtitle{ font-size:22px; }
-
-    .hero-img{ width:90px; height:90px; }
-
-  }
-
-  /* Textos flotantes */
-
-.falling-text{
-    position:absolute;
-    font-size:20px;
-    color:#ff69b4;
-    pointer-events:none;
-    white-space:nowrap;
-    font-weight:bold;
-    z-index:1;
-    opacity:.85;
-    text-shadow:1px 1px 3px rgba(255,255,255,.8);
-    animation:fall linear forwards;
-}
-
-@keyframes fall{
-    from{
-        transform:translateY(-100px);
     }
-    to{
-        transform:translateY(calc(100vh + 100px));
-    }
-}
 
-/* Kittys flotantes */
+    /* Page reset */
 
-.floating-kitty{
-    position:absolute;
-    width:90px;
-    height:90px;
-    object-fit:contain;
-    pointer-events:none;
-    z-index:0;
-    opacity:.8;
-    animation:kittyFloat linear infinite;
-}
+    * {
+      box-sizing: border-box
+    }
 
-@keyframes kittyFloat{
-    0%{
-        transform:translate(0,0) rotate(0deg);
-    }
-    25%{
-        transform:translate(50px,40px) rotate(5deg);
-    }
-    50%{
-        transform:translate(90px,0) rotate(0deg);
-    }
-    75%{
-        transform:translate(40px,-40px) rotate(-5deg);
-    }
-    100%{
-        transform:translate(0,0) rotate(0deg);
-    }
-}
+    html,
+    body {
 
-</style>
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      margin: 0;
+
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+
+      -webkit-font-smoothing: antialiased;
+
+      -moz-osx-font-smoothing: grayscale;
+
+      background-image: url("fondo.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+    }
+
+    /* Main card / stage */
+
+    .stage {
+
+      width: 100%;
+
+      min-height: 100vh;
+
+      padding: 48px 24px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      position: relative;
+
+      overflow: hidden;
+
+    }
+
+    .card {
+
+    width:min(92vw,700px);
+    padding:clamp(22px,4vw,48px);
+
+
+      text-align: center;
+
+
+      border-radius: 20px;
+
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.7));
+
+      box-shadow: var(--glow), 0 2px 8px rgba(0, 0, 0, 0.06);
+
+      backdrop-filter: blur(6px);
+
+      position: relative;
+
+      z-index: 10;
+
+    }
+
+    /* Hello Kitty image */
+
+    .hero-img {
+
+      width: 120px;
+
+      height: 120px;
+
+      object-fit: contain;
+
+      border-radius: 14px;
+
+      box-shadow: 0 10px 30px rgba(255, 100, 160, 0.12);
+
+      margin: 0 auto 12px;
+
+      display: block;
+
+    }
+
+    /* Title with shiny effect */
+
+    .title {
+      font-family: 'Great Vibes', cursive;
+    font-size:clamp(2.2rem,8vw,4rem);
+    line-height:1.15;
+          margin: 6px 0 10px;
+      position: relative;
+      display: inline-block;
+      padding: 8px 12px;
+
+      text-shadow:
+        0 2px 0 rgba(255, 255, 255, 0.6),
+        0 6px 20px rgba(255, 100, 160, 0.18);
+
+      background-image: linear-gradient(90deg,
+          #d14e83 0%,
+          #df8cad 30%,
+          #d14e83 60%,
+          #ca3772 100%);
+
+      background-size: 800px 100%;
+      animation: shimmer 5s linear infinite;
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+          text-wrap:balance;
+
+    }
+
+    .title span {
+      display: inline-block;
+
+
+      background-image: linear-gradient(90deg,
+          #d14e83 0%,
+          #df8cad 30%,
+          #d14e83 60%,
+          #ca3772 100%);
+
+      background-size: 800px 100%;
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+
+      animation: shimmer 5s linear infinite;
+    }
+
+    @keyframes shimmer {
+
+      0% {
+        background-position: -400px 0;
+      }
+
+      100% {
+        background-position: 400px 0;
+      }
+
+    }
+
+    /* Subtitle with layered shadow to look embossed */
+
+    .subtitle {
+
+    font-size:clamp(1.2rem,5vw,2rem);
+
+      margin: 6px 0 20px;
+
+      color: var(--accent);
+
+      font-weight: 600;
+
+      text-shadow: 0 2px 0 #fff, 0 6px 18px rgba(255, 110, 150, 0.14);
+
+    }
+
+    /* small description */
+
+    .desc {
+
+      color: #d14e83;
+
+      margin-bottom: 18px;
+          font-size:clamp(.95rem,3vw,1.1rem);
+    line-height:1.6;
+
+    }
+
+
+    /* hearts generated on click */
+
+    .heart {
+
+      position: absolute;
+
+      font-size: 20px;
+
+      pointer-events: none;
+
+      transform: translate(-50%, -50%) scale(1);
+
+      animation: floatUp 1600ms ease-out forwards;
+
+      will-change: transform, opacity;
+
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+
+    }
+
+    @keyframes floatUp {
+
+      0% {
+        transform: translate(-50%, -50%) translateY(0) scale(0.8) rotate(0deg);
+        opacity: 1;
+      }
+
+      60% {
+        transform: translate(-50%, -50%) translateY(-80px) scale(1.15) rotate(-10deg);
+        opacity: 0.95;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) translateY(-220px) scale(0.9) rotate(10deg);
+        opacity: 0;
+      }
+
+    }
+
+    /* small responsive tweaks */
+
+    @media (max-width:600px) {
+
+      .card {
+        padding: 28px;
+        border-radius: 14px;
+      }
+
+      .title {
+        font-size: 40px;
+      }
+
+      .subtitle {
+        font-size: 22px;
+      }
+
+      .hero-img {
+        width: 90px;
+        height: 90px;
+      }
+
+    }
+
+    /* Textos flotantes */
+
+    .falling-text {
+      position: absolute;
+      font-size: 20px;
+      color: #ff69b4;
+      pointer-events: none;
+      white-space: nowrap;
+      font-weight: bold;
+      z-index: 0;
+      opacity: .85;
+      text-shadow: 1px 1px 3px rgba(255, 255, 255, .8);
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-100px);
+      }
+
+      to {
+        transform: translateY(calc(100vh + 100px));
+      }
+    }
+
+    /* Kittys flotantes */
+
+    .floating-kitty {
+      position: absolute;
+    width:clamp(45px,15vw,90px);
+    height:clamp(45px,15vw,90px);
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .8;
+      animation: kittyFloat linear infinite;
+    }
+
+    @keyframes kittyFloat {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      25% {
+        transform: translate(50px, 40px) rotate(5deg);
+      }
+
+      50% {
+        transform: translate(90px, 0) rotate(0deg);
+      }
+
+      75% {
+        transform: translate(40px, -40px) rotate(-5deg);
+      }
+
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+    }
+  </style>
 
 </head>
 
 <body class="stage" id="stage">
 
 
-    <div class="card" aria-live="polite">
-<div class="subtitle">Feliz Cumpleaños <3 </div>
-      <!-- replace src if you want your own image -->
+  <div class="card" aria-live="polite">
+    <div class="subtitle">Feliz Cumpleaños <3 </div>
+        <!-- replace src if you want your own image -->
 
-      <img class="hero-img" src="https://i.pinimg.com/736x/f5/aa/2b/f5aa2b0a291ae54eb193de150ef968f4.jpg" alt="Hello Kitty">
+        <img class="hero-img" src="https://i.pinimg.com/736x/f5/aa/2b/f5aa2b0a291ae54eb193de150ef968f4.jpg"
+          alt="Hello Kitty">
 
-      <h1 class="title">
-    <span style="padding: 15px 0 15px 15px;">Fanny eres </span>
-    <span style="padding: 15px 15px 15px 0;" id="titleMessage">especial</span>
-</h1>
-      <p class="desc">No solo hoy, no solo ayer, no solo mañana, Si no cada dia que el corazon lata para recordarte.<br> <br> Att: Munguengue</p>
+        <h1 class="title">
+          <span style="padding: 15px 0 15px 15px;">Fanny eres </span>
+          <span style="padding: 15px 15px 15px 0;" id="titleMessage">especial</span>
+        </h1>
+        <p class="desc">No solo hoy, no solo ayer, no solo mañana, Si no cada dia que el corazon lata para
+          recordarte.<br> <br> Att: Munguengue</p>
 
-      
+
 
 
 
 
     </div>
 
-<script>
+    <script>
 
-  
-  // --- Create hearts on click ---
+      const isMobile = window.innerWidth < 768;
+      const kittyCount = isMobile ? 4 : 8;
 
-  (function heartsOnClick(){
 
-    const stage = document.getElementById('stage');
+      // --- Create hearts on click ---
 
-    const palette = ['#ff6ea3','#ff95c5','#ff3f8a','#ffd1ea','#ff7abf','#ffffff'];
+      (function heartsOnClick() {
 
-    function spawnHeart(x, y){
+        const stage = document.getElementById('stage');
 
-      const heart = document.createElement('div');
+        const palette = ['#ff6ea3', '#ff95c5', '#ff3f8a', '#ffd1ea', '#ff7abf', '#ffffff'];
 
-      heart.className = 'heart';
+        function spawnHeart(x, y) {
 
-      // random choose between emoji or CSS heart
+          const heart = document.createElement('div');
 
-      const useEmoji = Math.random() > 0.25;
+          heart.className = 'heart';
 
-      if(useEmoji){
+          // random choose between emoji or CSS heart
 
-        // random emoji hearts
+          const useEmoji = Math.random() > 0.25;
 
-        const choices = ['💖','💗','💘','💞','💝','💕','❤️‍🔥'];
+          if (useEmoji) {
 
-        heart.textContent = choices[Math.floor(Math.random()*choices.length)];
+            // random emoji hearts
 
-      } else {
+            const choices = ['💖', '💗', '💘', '💞', '💝', '💕', '❤️‍🔥'];
 
-        // fallback: simple text heart
+            heart.textContent = choices[Math.floor(Math.random() * choices.length)];
 
-        heart.textContent = '❤';
+          } else {
 
-      }
+            // fallback: simple text heart
 
-      const size = 16 + Math.floor(Math.random()*32);
+            heart.textContent = '❤';
 
-      heart.style.left = x + 'px';
+          }
 
-      heart.style.top = y + 'px';
+          const size = 16 + Math.floor(Math.random() * 32);
 
-      heart.style.fontSize = size + 'px';
+          heart.style.left = x + 'px';
 
-      heart.style.opacity = 1;
+          heart.style.top = y + 'px';
 
-      // color style via filter or color (emoji color varies). For text hearts, set color.
+          heart.style.fontSize = size + 'px';
 
-      heart.style.color = palette[Math.floor(Math.random()*palette.length)];
+          heart.style.opacity = 1;
 
-      // slight random delay/offset
+          // color style via filter or color (emoji color varies). For text hearts, set color.
 
-      heart.style.transform = 'translate(-50%, -50%) scale(0.9) rotate(' + (Math.random()*40-20) + 'deg)';
+          heart.style.color = palette[Math.floor(Math.random() * palette.length)];
 
-      stage.appendChild(heart);
+          // slight random delay/offset
 
-      // cleanup after animation
+          heart.style.transform = 'translate(-50%, -50%) scale(0.9) rotate(' + (Math.random() * 40 - 20) + 'deg)';
 
-      setTimeout(()=> {
+          stage.appendChild(heart);
 
-        heart.remove();
+          // cleanup after animation
 
-      }, 1800 + Math.random()*400);
+          setTimeout(() => {
 
-    }
+            heart.remove();
 
-    // on click anywhere in stage
+          }, 1800 + Math.random() * 400);
 
-    stage.addEventListener('click', function(e){
+        }
 
-      // create multiple hearts per click
+        // on click anywhere in stage
 
-      const howMany = 5 + Math.floor(Math.random()*6);
+        stage.addEventListener('click', function (e) {
 
-      for(let i=0;i<howMany;i++){
+          // create multiple hearts per click
 
-        // small jitter positions
+          const howMany = isMobile
+            ? 3 + Math.floor(Math.random() * 2)
+            : 5 + Math.floor(Math.random() * 6);
 
-        const jitterX = e.clientX + (Math.random()*80 - 40);
+          for (let i = 0; i < howMany; i++) {
 
-        const jitterY = e.clientY + (Math.random()*40 - 20);
+            // small jitter positions
 
-        setTimeout(()=> spawnHeart(jitterX, jitterY), i*60);
+            const jitterX = e.clientX + (Math.random() * 80 - 40);
 
-      }
+            const jitterY = e.clientY + (Math.random() * 40 - 20);
 
-    });
+            setTimeout(() => spawnHeart(jitterX, jitterY), i * 60);
 
-    // also spawn a few hearts on load for flair
+          }
 
-    window.addEventListener('load', function(){
+        });
 
-      const w = window.innerWidth, h = window.innerHeight;
+        // also spawn a few hearts on load for flair
 
-      for(let i=0;i<10;i++){
+        window.addEventListener('load', function () {
+
+          const w = window.innerWidth, h = window.innerHeight;
+
+          for (let i = 0; i < 10; i++) {
+
+            setTimeout(() => {
+
+              const x = (w / 2) + (Math.random() * 200 - 100);
+
+              const y = (h / 2) + (Math.random() * 100 - 60);
+
+              spawnHeart(x, y);
+
+            }, 300 + i * 140);
+
+          }
+
+        });
+
+      })();
+
+      /* -----------------------------
+       FRASES DEL TITULO
+    ------------------------------*/
+
+      const title = document.getElementById("titleMessage");
+
+      const phrases = [
+        "I love you Fanny 💖",
+        "Hello Kitty te ama 🎀",
+        "Eres muy especial 🌸",
+        "Mi persona favorita 💕",
+        "Siempre pienso en ti ✨",
+        "Tu sonrisa es hermosa 🌷",
+        "Hello Kitty aprueba esto 🐱",
+        "Eres mi felicidad 💝",
+        "Contigo todo es mejor 🌈",
+        "Mi Sanrio favorito 🎠",
+        "Te quiero muchísimo 💗",
+        "Eres increíble 💎"
+      ];
+
+      let phraseIndex = 0;
+
+      function changeTitle() {
+
+        title.style.opacity = 0;
 
         setTimeout(() => {
 
-          const x = (w/2) + (Math.random()*200 - 100);
+          phraseIndex = (phraseIndex + 1) % phrases.length;
 
-          const y = (h/2) + (Math.random()*100 - 60);
+          title.textContent = phrases[phraseIndex];
 
-          spawnHeart(x,y);
+          title.style.opacity = 1;
 
-        }, 300 + i*140);
-
+        }, 500);
       }
 
-    });
+      title.style.transition = "opacity .5s ease";
 
-  })();
+      setInterval(changeTitle, 3000);
 
-  /* -----------------------------
-   FRASES DEL TITULO
-------------------------------*/
+      /* -----------------------------
+         TEXTOS FLOTANDO
+      ------------------------------*/
 
-const title = document.getElementById("titleMessage");
+      const floatingPhrases = [
+        "💖",
+        "Hello Kitty",
+        "Fanny",
+        "Te quiero",
+        "💕",
+        "🎀",
+        "🌸",
+        "Kawaii",
+        "💝",
+        "🐱",
+        "✨",
+        "Sanrio"
+      ];
 
-const phrases = [
-    "I love you Fanny 💖",
-    "Hello Kitty te ama 🎀",
-    "Eres muy especial 🌸",
-    "Mi persona favorita 💕",
-    "Siempre pienso en ti ✨",
-    "Tu sonrisa es hermosa 🌷",
-    "Hello Kitty aprueba esto 🐱",
-    "Eres mi felicidad 💝",
-    "Contigo todo es mejor 🌈",
-    "Mi Sanrio favorito 🎠",
-    "Te quiero muchísimo 💗",
-    "Eres increíble 💎"
-];
+      function createFallingText() {
 
-let phraseIndex = 0;
+        const txt = document.createElement("div");
 
-function changeTitle(){
+        txt.className = "falling-text";
 
-    title.style.opacity = 0;
+        txt.textContent =
+          floatingPhrases[
+          Math.floor(Math.random() * floatingPhrases.length)
+          ];
 
-    setTimeout(() => {
+        txt.style.left =
+    (Math.random()*80 + 10) + "%";
 
-        phraseIndex = (phraseIndex + 1) % phrases.length;
+        txt.style.animationDuration =
+          (4 + Math.random() * 6) + "s";
 
-        title.textContent = phrases[phraseIndex];
+        txt.style.fontSize =
+          (16 + Math.random() * 16) + "px";
 
-        title.style.opacity = 1;
+        document.body.appendChild(txt);
 
-    }, 500);
-}
+        setTimeout(() => {
+          txt.remove();
+        }, 10000);
+      }
 
-title.style.transition = "opacity .5s ease";
+      setInterval(
+        createFallingText,
+        isMobile ? 900 : 350
+      );
+      /* -----------------------------
+         HELLO KITTYS FLOTANTES
+      ------------------------------*/
 
-setInterval(changeTitle, 3000);
+      const kittyImages = [
+        'https://i.gifer.com/origin/1c/1c29154636f73295ad5fe84068c7a180_w200.gif',
+        'https://i.pinimg.com/originals/15/50/de/1550dedd078d0ae32e357ae926c0afe7.gif',
+        'https://media.tenor.com/9aNFYFKJijEAAAAM/kitty-lol-kittylove.gif',
+        'https://media1.giphy.com/media/jpqwTJ25fA9HzdeS8Z/source.gif',
+        'https://i.pinimg.com/originals/29/fc/51/29fc5101151a16e9bc60e0cd1b447158.gif',
+        'https://media.tenor.com/Lm5Zj59Qp0kAAAAM/sanrio-hello-kitty.gif'
+      ];
 
-/* -----------------------------
-   TEXTOS FLOTANDO
-------------------------------*/
+      function createFloatingKitties() {
 
-const floatingPhrases = [
-    "💖",
-    "Hello Kitty",
-    "Fanny",
-    "Te quiero",
-    "💕",
-    "🎀",
-    "🌸",
-    "Kawaii",
-    "💝",
-    "🐱",
-    "✨",
-    "Sanrio"
-];
+        for (let i = 0; i < kittyCount; i++) {
 
-function createFallingText(){
+          const kitty = document.createElement("img");
 
-    const txt = document.createElement("div");
+          kitty.className = "floating-kitty";
 
-    txt.className = "falling-text";
-
-    txt.textContent =
-        floatingPhrases[
-            Math.floor(Math.random() * floatingPhrases.length)
-        ];
-
-    txt.style.left =
-        Math.random() * window.innerWidth + "px";
-
-    txt.style.animationDuration =
-        (4 + Math.random() * 6) + "s";
-
-    txt.style.fontSize =
-        (16 + Math.random() * 16) + "px";
-
-    document.body.appendChild(txt);
-
-    setTimeout(() => {
-        txt.remove();
-    }, 10000);
-}
-
-setInterval(createFallingText, 350);
-
-/* -----------------------------
-   HELLO KITTYS FLOTANTES
-------------------------------*/
-
-const kittyImages = [
-    'https://i.gifer.com/origin/1c/1c29154636f73295ad5fe84068c7a180_w200.gif',
-      'https://i.pinimg.com/originals/15/50/de/1550dedd078d0ae32e357ae926c0afe7.gif',
-      'https://media.tenor.com/9aNFYFKJijEAAAAM/kitty-lol-kittylove.gif',
-      'https://media1.giphy.com/media/jpqwTJ25fA9HzdeS8Z/source.gif',
-      'https://i.pinimg.com/originals/29/fc/51/29fc5101151a16e9bc60e0cd1b447158.gif',
-      'https://media.tenor.com/Lm5Zj59Qp0kAAAAM/sanrio-hello-kitty.gif'
-];
-
-function createFloatingKitties(){
-
-    for(let i = 0; i < 8; i++){
-
-        const kitty = document.createElement("img");
-
-        kitty.className = "floating-kitty";
-
-        kitty.src =
+          kitty.src =
             kittyImages[
-                Math.floor(Math.random() * kittyImages.length)
+            Math.floor(Math.random() * kittyImages.length)
             ];
 
-        kitty.style.left =
+          kitty.style.left =
             (Math.random() * 85) + "%";
 
-        kitty.style.top =
+          kitty.style.top =
             (Math.random() * 85) + "%";
 
-        kitty.style.animationDuration =
+          kitty.style.animationDuration =
             (10 + Math.random() * 10) + "s";
 
-        kitty.style.animationDelay =
+          kitty.style.animationDelay =
             (Math.random() * 5) + "s";
 
-        document.body.appendChild(kitty);
-    }
-}
+          document.body.appendChild(kitty);
+        }
+      }
 
-createFloatingKitties();
+      createFloatingKitties();
 
-</script>
+    </script>
 
 </body>
 
