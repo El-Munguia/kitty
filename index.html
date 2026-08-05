@@ -447,7 +447,7 @@
 
             cursor: pointer;
 
-            font-size: 1.2rem;
+            font-size: 2.2rem;
 
             font-weight: bold;
 
@@ -689,9 +689,11 @@
 
 
     giftButton.addEventListener("click", () => {
-        console.log("Botón de regalo presionado");
 
         if (!regaloDisponible) {
+
+            music.pause();
+            music.currentTime = 0;
 
             birthdayVideo.pause();
 
